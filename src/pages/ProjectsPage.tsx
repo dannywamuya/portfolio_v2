@@ -1,10 +1,18 @@
-import { AspectRatio, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
+import {
+  AspectRatio,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  Skeleton,
+  Text,
+} from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import netchatVideo from "../assets/netchat.mp4";
 import golVideo from "../assets/gol.mp4";
 import customUiVideo from "../assets/custom-ui.mp4";
 import afrexVideo from "../assets/afrex.mp4";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toTitleCase } from "../utils/formatText";
 import { FaGithub } from "react-icons/fa";
 import { AiOutlineLink } from "react-icons/ai";
@@ -93,6 +101,17 @@ const ProjectItem = ({
 }) => {
   const isEven = useMemo(() => id % 2 === 0, [id]);
   const [styles, setStyles] = useState(videoStyles);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.addEventListener("loadeddata", () => {
+        setVideoLoaded(true);
+      });
+    }
+  }, [videoRef]);
 
   return (
     <Flex my="8" align={"center"} direction={isEven ? "row" : "row-reverse"}>
@@ -175,15 +194,27 @@ const ProjectItem = ({
           cursor={"pointer"}
         >
           <AspectRatio w="full" ratio={21 / 9}>
-            <video
-              src={preview.path}
-              autoPlay
-              muted
-              loop
-              style={{ ...styles }}
-              onMouseEnter={() => setStyles(videoHoverStyles)}
-              onMouseLeave={() => setStyles(videoStyles)}
-            />
+            <Skeleton
+              isLoaded={videoLoaded}
+              borderRadius={"md"}
+              fadeDuration={3}
+              startColor="brand.altMain"
+              endColor="brand.bgMain"
+              fitContent={true}
+              w={"full"}
+              h={"full"}
+            >
+              <video
+                ref={videoRef}
+                src={preview.path}
+                autoPlay
+                muted
+                loop
+                style={videoLoaded ? { ...styles } : {}}
+                onMouseEnter={() => setStyles(videoHoverStyles)}
+                onMouseLeave={() => setStyles(videoStyles)}
+              />
+            </Skeleton>
           </AspectRatio>
         </Flex>
       ) : null}
