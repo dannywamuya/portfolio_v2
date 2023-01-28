@@ -5,6 +5,9 @@ const theme = extendTheme({
     brand: {
       mainBg: "#022b3a",
       mainColor: "#43c2fd",
+      white: "#DDECF3",
+      altMain: "#736E91",
+      lightGreen: "#21E79B",
     },
   },
   components: {
@@ -12,13 +15,19 @@ const theme = extendTheme({
       baseStyle: {
         color: "brand.mainColor",
         fontSize: "16px",
+        fontFamily: "Karla",
       },
       variants: {
         link: {
           fontSize: "14px",
+          fontFamily: "Roboto mono",
         },
       },
     },
+  },
+  fonts: {
+    body: "Raleway",
+    text: "Karla",
   },
 });
 
