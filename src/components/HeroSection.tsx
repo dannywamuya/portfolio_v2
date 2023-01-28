@@ -58,7 +58,7 @@ const HeroSection = () => {
       h={"100%"}
       w={"100%"}
       direction={"column"}
-      px={["8", "12", "32"]}
+      px={["20", "10", "20"]}
     >
       <Flex direction={"column"} gap={2}>
         <Text color={"brand.white"}>Hi, my name is,</Text>

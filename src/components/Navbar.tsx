@@ -6,8 +6,9 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { Link, useMatch } from "@tanstack/react-location";
+import { Link } from "@tanstack/react-location";
 import logo from "../assets/logo.png";
+import logoAbr from "../assets/logo-abr.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const NavLink = ({ path, text }: { path: string; text: string }) => {
@@ -49,7 +50,11 @@ const Navbar = ({ showNav = false }) => {
       position={"absolute"}
     >
       <Link to="/">
-        <Image width={"240px"} src={logo} alt={"Danny's Logo"} />
+        {showNav ? (
+          <Image width={"61.42px"} src={logoAbr} alt={"Danny's Logo"} />
+        ) : (
+          <Image width={"240px"} src={logo} alt={"Danny's Logo"} />
+        )}
       </Link>
       {isLargerThan800 ? (
         <Flex gap={"8"} align={"center"}>
