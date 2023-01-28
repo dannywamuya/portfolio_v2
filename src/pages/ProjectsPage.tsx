@@ -1,12 +1,4 @@
-import {
-  AspectRatio,
-  Flex,
-  Heading,
-  Icon,
-  Link,
-  Skeleton,
-  Text,
-} from "@chakra-ui/react";
+import { AspectRatio, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import netchatVideo from "../assets/netchat.mp4";
 import golVideo from "../assets/gol.mp4";
@@ -18,6 +10,7 @@ import { FaGithub } from "react-icons/fa";
 import { AiOutlineLink } from "react-icons/ai";
 import SeeMoreSection from "../components/SeeMoreSection";
 import { Link as RouterLink } from "@tanstack/react-location";
+import { motion } from "framer-motion";
 
 interface IProject {
   id: number;
@@ -116,94 +109,101 @@ const ProjectItem = ({
   return (
     <Flex my="8" align={"center"} direction={isEven ? "row" : "row-reverse"}>
       {/* Details */}
-      <Flex
-        direction={"column"}
-        w="full"
-        align={isEven ? "flex-start" : "flex-end"}
+      <motion.div
+        animate={{ x: !isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
+        transition={{
+          ease: "linear",
+          duration: 0.4,
+        }}
+        style={{ minWidth: "50%", zIndex: "50" }}
       >
-        <Text my={"2"} color={"brand.lightGreen"} fontSize="lg">
-          {name}
-        </Text>
         <Flex
           direction={"column"}
-          h="100%"
-          bg={"brand.altMain"}
-          borderRadius={"md"}
-          p={"4"}
-          mr={isEven ? "-8" : "0"}
-          ml={!isEven ? "-8" : "0"}
-          zIndex={"50"}
-          w="fit-content"
-          textAlign={isEven ? "start" : "end"}
+          w="full"
+          align={isEven ? "flex-start" : "flex-end"}
         >
-          <Text>{description}</Text>
+          <Text my={"2"} color={"brand.lightGreen"} fontSize="lg">
+            {name}
+          </Text>
+          <Flex
+            direction={"column"}
+            h="100%"
+            bg={"brand.altMain"}
+            borderRadius={"md"}
+            p={"4"}
+            mr={isEven ? "-8" : "0"}
+            ml={!isEven ? "-8" : "0"}
+            zIndex={"50"}
+            w="fit-content"
+            textAlign={isEven ? "start" : "end"}
+          >
+            <Text>{description}</Text>
+          </Flex>
+          <Flex
+            w={"full"}
+            wrap={"wrap"}
+            gap={"2"}
+            my={"3"}
+            justify={isEven ? "flex-start" : "flex-end"}
+            align={"center"}
+          >
+            {tags && tags?.length > 0
+              ? tags.map((tag, index) => (
+                  <Flex
+                    py={"1"}
+                    px={"2"}
+                    key={index}
+                    bg={"brand.white"}
+                    borderRadius={"lg"}
+                  >
+                    <Text key={index} color={"brand.bgMain"} fontSize={"sm"}>
+                      {toTitleCase(tag)}
+                    </Text>
+                  </Flex>
+                ))
+              : null}
+          </Flex>
+          <Flex gap={"2"}>
+            {liveUrl ? (
+              <Link href={liveUrl} target={"_blank"}>
+                <Icon
+                  as={AiOutlineLink}
+                  boxSize={"24px"}
+                  color={"brand.mainColor"}
+                />
+              </Link>
+            ) : null}
+            {githubUrl && githubUrl?.length > 0
+              ? githubUrl.map((url, index) => (
+                  <Link href={url} key={index} target={"_blank"}>
+                    <Icon
+                      as={FaGithub}
+                      boxSize={"24px"}
+                      color={"brand.mainColor"}
+                    />
+                  </Link>
+                ))
+              : null}
+          </Flex>
         </Flex>
-        <Flex
-          w={"full"}
-          wrap={"wrap"}
-          gap={"2"}
-          my={"3"}
-          justify={isEven ? "flex-start" : "flex-end"}
-          align={"center"}
-        >
-          {tags && tags?.length > 0
-            ? tags.map((tag, index) => (
-                <Flex
-                  py={"1"}
-                  px={"2"}
-                  key={index}
-                  bg={"brand.white"}
-                  borderRadius={"lg"}
-                >
-                  <Text key={index} color={"brand.bgMain"} fontSize={"sm"}>
-                    {toTitleCase(tag)}
-                  </Text>
-                </Flex>
-              ))
-            : null}
-        </Flex>
-        <Flex gap={"2"}>
-          {liveUrl ? (
-            <Link href={liveUrl} target={"_blank"}>
-              <Icon
-                as={AiOutlineLink}
-                boxSize={"24px"}
-                color={"brand.mainColor"}
-              />
-            </Link>
-          ) : null}
-          {githubUrl && githubUrl?.length > 0
-            ? githubUrl.map((url, index) => (
-                <Link href={url} key={index} target={"_blank"}>
-                  <Icon
-                    as={FaGithub}
-                    boxSize={"24px"}
-                    color={"brand.mainColor"}
-                  />
-                </Link>
-              ))
-            : null}
-        </Flex>
-      </Flex>
+      </motion.div>
       {/* Preview */}
       {preview && preview.path && preview.type ? (
-        <Flex
-          minW={"50%"}
-          direction={"column"}
-          zIndex={"49"}
-          cursor={"pointer"}
+        <motion.div
+          animate={{ x: isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
+          transition={{
+            ease: "linear",
+            duration: 0.4,
+          }}
+          style={{ minWidth: "50%", zIndex: "49" }}
         >
-          <AspectRatio w="full" ratio={21 / 9}>
-            <Skeleton
-              isLoaded={videoLoaded}
-              borderRadius={"md"}
-              fadeDuration={3}
-              startColor="brand.altMain"
-              endColor="brand.bgMain"
-              fitContent={true}
-              w={"full"}
-              h={"full"}
-            >
+          <Flex
+            minW={"50%"}
+            direction={"column"}
+            zIndex={"49"}
+            cursor={"pointer"}
+          >
+            <AspectRatio w="full" ratio={21 / 9}>
               <video
                 ref={videoRef}
                 src={preview.path}
@@ -214,9 +214,9 @@ const ProjectItem = ({
                 onMouseEnter={() => setStyles(videoHoverStyles)}
                 onMouseLeave={() => setStyles(videoStyles)}
               />
-            </Skeleton>
-          </AspectRatio>
-        </Flex>
+            </AspectRatio>
+          </Flex>
+        </motion.div>
       ) : null}
     </Flex>
   );
