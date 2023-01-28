@@ -79,14 +79,11 @@ const Navbar = ({ showNav = false }) => {
             </>
           ) : null}
         </Flex>
-      ) : showNav ? (
-        <IconButton
-          aria-label="Drop Menu Button"
-          bg={"brand.mainColor"}
-          size={"sm"}
-          icon={<GiHamburgerMenu />}
-        />
-      ) : null}
+      ) : showNav ? null : //   bg={"brand.mainColor"} //   aria-label="Drop Menu Button" // <IconButton
+      //   size={"sm"}
+      //   icon={<GiHamburgerMenu />}
+      // />
+      null}
     </Flex>
   );
 };
