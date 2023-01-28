@@ -1,10 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { ReactLocation, Router } from "@tanstack/react-location";
+import routes from "./routes";
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "./theme";
+import App from "./App";
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+const locationClient = new ReactLocation();
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <ChakraProvider theme={theme}>
+      <Router location={locationClient} routes={routes}>
+        <App />
+      </Router>
+    </ChakraProvider>
+  </React.StrictMode>
+);
