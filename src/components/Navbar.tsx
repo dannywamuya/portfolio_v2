@@ -51,7 +51,7 @@ const Navbar = ({ showNav = false }) => {
     >
       <Link to="/">
         {showNav ? (
-          <Image width={"61.42px"} src={logoAbr} alt={"Danny's Logo"} />
+        <Image width={"61.42px"} src={logoAbr} alt={"Danny's Logo"} />
         ) : (
           <Image width={"240px"} src={logo} alt={"Danny's Logo"} />
         )}
