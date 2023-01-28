@@ -75,7 +75,7 @@ const AboutPage = () => {
             color={"brand.lightGreen"}
             fontWeight={"900"}
             opacity={".05"}
-            position="absolute"
+            position="fixed"
             mr={"8"}
           >
             About Me.
