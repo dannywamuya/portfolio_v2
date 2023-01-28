@@ -8,6 +8,8 @@ const theme = extendTheme({
       white: "#DDECF3",
       altMain: "#736E91",
       lightGreen: "#21E79B",
+      bgGradient:
+        "linear-gradient(168deg, rgba(2,43,58,1) 52%, rgba(33,231,155,1) 100%)",
     },
   },
   components: {

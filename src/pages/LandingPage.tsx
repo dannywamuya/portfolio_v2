@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 const LandingPage = () => {
   return (
-    <Flex direction={"column"} w={"100vw"} h={"100vh"} bg={"brand.mainBg"}>
+    <Flex direction={"column"} w={"100vw"} h={"100vh"} bg={"brand.bgGradient"}>
       <Navbar />
       <HeroSection />
     </Flex>
