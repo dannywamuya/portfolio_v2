@@ -6,7 +6,7 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { Link } from "@tanstack/react-location";
+import { Link, useMatch } from "@tanstack/react-location";
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -35,7 +35,7 @@ const navLinks = [
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({ showNav = false }) => {
   const [isLargerThan800] = useMediaQuery("(min-width: 768px)");
 
   return (
@@ -53,9 +53,11 @@ const Navbar = () => {
       </Link>
       {isLargerThan800 ? (
         <Flex gap={"8"} align={"center"}>
-          {/* {navLinks.map((navlink, idx) => (
-            <NavLink key={idx} path={navlink.path} text={navlink.text} />
-          ))} */}
+          {showNav
+            ? navLinks.map((navlink, idx) => (
+                <NavLink key={idx} path={navlink.path} text={navlink.text} />
+              ))
+            : null}
           <Button
             variant={"outline"}
             color={"brand.lightGreen"}

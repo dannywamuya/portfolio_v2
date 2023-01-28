@@ -1,5 +1,5 @@
 import { Button, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
-import { HiOutlineArrowSmRight } from "react-icons/hi";
+import { HiOutlineArrowSmRight, HiOutlineArrowSmLeft } from "react-icons/hi";
 import { MdOutlineWork } from "react-icons/md";
 import { BsFileCodeFill } from "react-icons/bs";
 import { FiMoreHorizontal } from "react-icons/fi";
@@ -94,10 +94,12 @@ const HeroSection = () => {
             See more about me
           </Text>
           <motion.button
-            animate={{ x: isShown ? [null, 0] : [0, 40, 0] }}
+            animate={{
+              x: isShown ? [null, 0] : [0, 40, 0],
+            }}
             transition={{
               ease: "linear",
-              duration: isShown ? 0.3 : 2,
+              duration: isShown ? 0.2 : 2,
               repeat: isShown ? 0 : Infinity,
             }}
           >
@@ -106,7 +108,9 @@ const HeroSection = () => {
               color={"brand.white"}
               size={"lg"}
               variant={"unstyled"}
-              icon={<HiOutlineArrowSmRight />}
+              icon={
+                isShown ? <HiOutlineArrowSmLeft /> : <HiOutlineArrowSmRight />
+              }
             />
           </motion.button>
         </Flex>
