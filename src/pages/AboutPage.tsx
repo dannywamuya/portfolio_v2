@@ -1,6 +1,8 @@
 import { Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import { FaGithub } from "react-icons/fa";
+import SeeMoreSection from "../components/SeeMoreSection";
+import { Link as RouterLink } from "@tanstack/react-location";
 
 interface IContent {
   title: string;
@@ -85,6 +87,15 @@ const AboutPage = () => {
           {content.map((content) => (
             <ContentSection key={content.title} content={content} />
           ))}
+          <Flex my={"4"}>
+            <RouterLink to="/projects">
+              <SeeMoreSection
+                setIsShown={() => null}
+                isShown={false}
+                text={"my projects"}
+              />
+            </RouterLink>
+          </Flex>
           <Flex my={"8"} />
         </Flex>
       </Flex>

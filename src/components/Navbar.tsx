@@ -25,10 +25,10 @@ const navLinks = [
     path: "/about",
     text: "About",
   },
-  {
-    path: "/work",
-    text: "Work",
-  },
+  // {
+  //   path: "/work",
+  //   text: "Work",
+  // },
   {
     path: "/projects",
     text: "Projects",
@@ -53,36 +53,40 @@ const Navbar = ({ showNav = false }) => {
       </Link>
       {isLargerThan800 ? (
         <Flex gap={"8"} align={"center"}>
-          {showNav
-            ? navLinks.map((navlink, idx) => (
+          {showNav ? (
+            <>
+              {navLinks.map((navlink, idx) => (
                 <NavLink key={idx} path={navlink.path} text={navlink.text} />
-              ))
-            : null}
-          <Button
-            variant={"outline"}
-            color={"brand.lightGreen"}
-            size={"sm"}
-            borderColor={"brand.lightGreen"}
-            fontWeight={"medium"}
-            fontSize={"13px"}
-            fontFamily={"Roboto Mono"}
-            _hover={{
-              bg: "brand.lightGreen",
-              color: "brand.mainBg",
-              fontWeight: "bold",
-            }}
-          >
-            Contact Me
-          </Button>
+              ))}
+              <Link to={"/contact"}>
+                <Button
+                  variant={"outline"}
+                  color={"brand.lightGreen"}
+                  size={"sm"}
+                  borderColor={"brand.lightGreen"}
+                  fontWeight={"medium"}
+                  fontSize={"13px"}
+                  fontFamily={"Roboto Mono"}
+                  _hover={{
+                    bg: "brand.lightGreen",
+                    color: "brand.mainBg",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Contact Me
+                </Button>
+              </Link>
+            </>
+          ) : null}
         </Flex>
-      ) : (
+      ) : showNav ? (
         <IconButton
           aria-label="Drop Menu Button"
           bg={"brand.mainColor"}
           size={"sm"}
           icon={<GiHamburgerMenu />}
         />
-      )}
+      ) : null}
     </Flex>
   );
 };

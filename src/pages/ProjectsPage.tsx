@@ -8,6 +8,8 @@ import { useMemo, useState } from "react";
 import { toTitleCase } from "../utils/formatText";
 import { FaGithub } from "react-icons/fa";
 import { AiOutlineLink } from "react-icons/ai";
+import SeeMoreSection from "../components/SeeMoreSection";
+import { Link as RouterLink } from "@tanstack/react-location";
 
 interface IProject {
   id: number;
@@ -215,6 +217,15 @@ const ProjectsPage = () => {
           {projects.map((project) => (
             <ProjectItem key={project.id} project={project} />
           ))}
+        </Flex>
+        <Flex my={"4"}>
+          <RouterLink to="/contact">
+            <SeeMoreSection
+              setIsShown={() => null}
+              isShown={false}
+              text={"my contact details"}
+            />
+          </RouterLink>
         </Flex>
         <Flex my={"8"} />
       </Flex>
