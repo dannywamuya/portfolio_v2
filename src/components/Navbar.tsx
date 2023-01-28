@@ -1,4 +1,11 @@
-import { Flex, IconButton, Image, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  IconButton,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { Link } from "@tanstack/react-location";
 import logo from "../assets/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -26,10 +33,6 @@ const navLinks = [
     path: "/projects",
     text: "Projects",
   },
-  {
-    path: "/contact",
-    text: "Contact",
-  },
 ];
 
 const Navbar = () => {
@@ -46,13 +49,29 @@ const Navbar = () => {
       position={"absolute"}
     >
       <Link to="/">
-        <Image width={"180px"} src={logo} alt={"Danny's Logo"} />
+        <Image width={"240px"} src={logo} alt={"Danny's Logo"} />
       </Link>
       {isLargerThan800 ? (
         <Flex gap={"8"} align={"center"}>
-          {navLinks.map((navlink, idx) => (
+          {/* {navLinks.map((navlink, idx) => (
             <NavLink key={idx} path={navlink.path} text={navlink.text} />
-          ))}
+          ))} */}
+          <Button
+            variant={"outline"}
+            color={"brand.lightGreen"}
+            size={"sm"}
+            borderColor={"brand.lightGreen"}
+            fontWeight={"medium"}
+            fontSize={"13px"}
+            fontFamily={"Roboto Mono"}
+            _hover={{
+              bg: "brand.lightGreen",
+              color: "brand.mainBg",
+              fontWeight: "bold",
+            }}
+          >
+            Contact Me
+          </Button>
         </Flex>
       ) : (
         <IconButton
