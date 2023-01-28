@@ -110,11 +110,13 @@ const ProjectItem = ({
     <Flex my="8" align={"center"} direction={isEven ? "row" : "row-reverse"}>
       {/* Details */}
       <motion.div
-        animate={{ x: !isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
+        whileInView={{ x: !isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
+        viewport={{ once: true }}
         transition={{
           ease: "linear",
           duration: 0.4,
         }}
+        initial={{ opacity: 0 }}
         style={{ minWidth: "50%", zIndex: "50" }}
       >
         <Flex
@@ -190,7 +192,9 @@ const ProjectItem = ({
       {/* Preview */}
       {preview && preview.path && preview.type ? (
         <motion.div
-          animate={{ x: isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
+          initial={{ opacity: 0 }}
+          whileInView={{ x: isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
+          viewport={{ once: true }}
           transition={{
             ease: "linear",
             duration: 0.4,
