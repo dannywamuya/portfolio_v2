@@ -1,6 +1,9 @@
 import { AspectRatio, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import netchatVideo from "../assets/netchat.mp4";
+import golVideo from "../assets/gol.mp4";
+import customUiVideo from "../assets/custom-ui.mp4";
+import afrexVideo from "../assets/afrex.mp4";
 import { useMemo, useState } from "react";
 import { toTitleCase } from "../utils/formatText";
 import { FaGithub } from "react-icons/fa";
@@ -20,62 +23,63 @@ const projects: IProject[] = [
   {
     id: 1,
     name: "Game of Life",
-    description:
-      "Game of Life is an example of cellular automaton and zero player game. It is played on a 2D grid with the purpose of defining an interesting and unpredictable cellular automaton",
+    description: `Game of Life is an example of cellular automaton and zero player 
+    game. It is played on a 2D grid with the purpose of defining an interesting and 
+    unpredictable cellular automaton.`,
     githubUrl: ["https://github.com/dannywamuya/game-of-life"],
     liveUrl: "https://dannywamuya.github.io/game-of-life/",
     tags: ["javascript", "typescript", "react", "html", "css3"],
-    preview: { type: "mp4", path: netchatVideo },
+    preview: { type: "mp4", path: golVideo },
   },
   {
     id: 2,
     name: "Netchat v1",
-    description:
-      "Netchat is a unix terminal based server-client chat application using the TCP protocol. It supports real-time, multi client-server communication.",
+    description: `Netchat is a unix terminal based server-client chat application using 
+    the TCP protocol. It supports real-time, multi client-server communication.`,
     githubUrl: ["https://github.com/dannywamuya/netchat"],
     tags: ["c++", "Network Programming"],
     preview: { type: "mp4", path: netchatVideo },
   },
   {
     id: 3,
-    name: "Netchat v1",
-    description:
-      "Netchat is a unix terminal based server-client chat application using the TCP protocol. It supports real-time, multi client-server communication.",
-    githubUrl: ["https://github.com/dannywamuya/netchat"],
-    tags: ["c++", "Network Programming"],
-    preview: { type: "mp4", path: netchatVideo },
+    name: "Afrex Gold Limited",
+    description: `A website developed in Angular for horticulture exporting company 
+    Afrex Gold with integrated backend services for mail.`,
+    liveUrl: "http://www.afrexgold.com",
+    tags: ["angular", "typescript", "nodejs"],
+    preview: { type: "mp4", path: afrexVideo },
   },
   {
     id: 4,
-    name: "Netchat v1",
-    description:
-      "Netchat is a unix terminal based server-client chat application using the TCP protocol. It supports real-time, multi client-server communication.",
-    githubUrl: ["https://github.com/dannywamuya/netchat"],
-    tags: ["c++", "Network Programming"],
-    preview: { type: "mp4", path: netchatVideo },
-  },
-  {
-    id: 5,
-    name: "Netchat v1",
-    description:
-      "Netchat is a unix terminal based server-client chat application using the TCP protocol. It supports real-time, multi client-server communication.",
-    githubUrl: ["https://github.com/dannywamuya/netchat"],
-    tags: ["c++", "Network Programming"],
-    preview: { type: "mp4", path: netchatVideo },
+    name: "Custom React Components",
+    description: `Custom components is an ongoing react project that allows 
+    you to customize and reuse common react components such as the DataTable 
+    with all it's functionality built on top of proven react libraries. Storybook 
+    integration is on the roadmap.`,
+    githubUrl: ["https://github.com/dannywamuya/custom-components"],
+    liveUrl: "https://customui.onrender.com/",
+    tags: [
+      "react",
+      "typescript",
+      "react-query",
+      "react-table",
+      "react-location",
+    ],
+    preview: { type: "mp4", path: customUiVideo },
   },
 ];
 
 const videoStyles = {
   borderRadius: "5px",
   boxShadow: "10px 10px black",
-  filter: "grayscale(0.6)",
+  filter: "grayscale(0.3)",
   transition: "all 0.5s ease-in-out",
 };
 
 const videoHoverStyles = {
   borderRadius: "5px",
   boxShadow: "15px 15px black",
-  filter: "saturate(1.7)",
+  filter: "saturate(1.5)",
   transform: "scale(1.02)",
   transition: "all 0.5s ease-in-out",
 };
@@ -89,7 +93,7 @@ const ProjectItem = ({
   const [styles, setStyles] = useState(videoStyles);
 
   return (
-    <Flex my="4" align={"center"} direction={isEven ? "row" : "row-reverse"}>
+    <Flex my="8" align={"center"} direction={isEven ? "row" : "row-reverse"}>
       {/* Details */}
       <Flex
         direction={"column"}
@@ -123,7 +127,13 @@ const ProjectItem = ({
         >
           {tags && tags?.length > 0
             ? tags.map((tag, index) => (
-                <Flex py={"1"} px={"2"} bg={"brand.white"} borderRadius={"lg"}>
+                <Flex
+                  py={"1"}
+                  px={"2"}
+                  key={index}
+                  bg={"brand.white"}
+                  borderRadius={"lg"}
+                >
                   <Text key={index} color={"brand.bgMain"} fontSize={"sm"}>
                     {toTitleCase(tag)}
                   </Text>
@@ -162,7 +172,7 @@ const ProjectItem = ({
           zIndex={"49"}
           cursor={"pointer"}
         >
-          <AspectRatio w="full" ratio={16 / 9}>
+          <AspectRatio w="full" ratio={21 / 9}>
             <video
               src={preview.path}
               autoPlay
