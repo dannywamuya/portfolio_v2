@@ -92,7 +92,7 @@ const AboutPage = () => {
               <SeeMoreSection
                 setIsShown={() => null}
                 isShown={false}
-                text={"my projects"}
+                text={"See my projects"}
               />
             </RouterLink>
           </Flex>

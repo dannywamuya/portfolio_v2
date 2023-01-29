@@ -258,7 +258,7 @@ const ProjectsPage = () => {
             <SeeMoreSection
               setIsShown={() => null}
               isShown={false}
-              text={"my contact details"}
+              text={"See my contact details"}
             />
           </RouterLink>
         </Flex>

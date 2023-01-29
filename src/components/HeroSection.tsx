@@ -90,7 +90,11 @@ const HeroSection = () => {
         </Text>
       </Flex>
       <Flex gap={"8"}>
-        <SeeMoreSection isShown={isShown} setIsShown={setIsShown} />
+        <SeeMoreSection
+          isShown={isShown}
+          setIsShown={setIsShown}
+          text={"See more about me"}
+        />
         {isShown ? (
           <Flex>
             <motion.div

@@ -9,7 +9,7 @@ function SeeMoreSection({
 }: {
   setIsShown: (arg: boolean) => any;
   isShown: boolean;
-  text?: string;
+  text: string;
 }) {
   return (
     <Flex
@@ -19,7 +19,7 @@ function SeeMoreSection({
       onClick={() => setIsShown(!isShown)}
     >
       <Text color={"brand.white"} borderBottom={"1px solid"}>
-        See {text ? `${text}` : `more about me`}
+        {text}
       </Text>
       <motion.button
         animate={{
