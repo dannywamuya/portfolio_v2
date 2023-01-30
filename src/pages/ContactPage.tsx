@@ -209,11 +209,21 @@ const ContactPage = () => {
             Contact Me.
           </Heading>
         </Flex>
-        <Flex h={"full"} align={"center"} w={"full"}>
-          <Flex w={"50%"}>
+        <Flex
+          h={"full"}
+          align={"center"}
+          w={"full"}
+          direction={["column", "column", "row"]}
+        >
+          <Flex w={["100%", "100%", "50%"]}>
             <ContactForm />
           </Flex>
-          <Flex direction={"column"} align={"center"} gap={"16"}>
+          <Flex
+            direction={"column"}
+            align={"center"}
+            gap={"16"}
+            mt={["16", "16", "0"]}
+          >
             <Text textAlign={"center"} w={"70%"}>
               I am currently available for full-time positions in Frontend or
               Full-Stack Development either remote or on-site. I am based in
@@ -250,6 +260,7 @@ const ContactPage = () => {
             </Flex>
           </Flex>
         </Flex>
+        <Flex my={"8"} />
       </Flex>
     </Flex>
   );

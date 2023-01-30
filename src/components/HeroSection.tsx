@@ -69,14 +69,14 @@ const HeroSection = () => {
           Hi, my name is,
         </Text>
         <Heading
-          fontSize={["4xl", "5xl", "6xl"]}
+          fontSize={["3xl", "4xl", "5xl", "6xl"]}
           color={"brand.white"}
           fontWeight={"900"}
         >
           Danny Wamuya.
         </Heading>
         <Heading
-          fontSize={["4xl", "5xl", "6xl"]}
+          fontSize={["3xl", "4xl", "5xl", "6xl"]}
           color={"brand.altMain"}
           fontWeight={"900"}
         >
@@ -89,7 +89,7 @@ const HeroSection = () => {
           scaleable web applications.
         </Text>
       </Flex>
-      <Flex gap={"8"}>
+      <Flex gap={"8"} direction={["column", "column", "row"]}>
         <SeeMoreSection
           isShown={isShown}
           setIsShown={setIsShown}

@@ -1,4 +1,12 @@
-import { AspectRatio, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
+import {
+  AspectRatio,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import netchatVideo from "../assets/netchat.mp4";
 import golVideo from "../assets/gol.mp4";
@@ -96,6 +104,7 @@ const ProjectItem = ({
   const [styles, setStyles] = useState(videoStyles);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLargerThan800] = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
     const video = videoRef.current;
@@ -107,7 +116,15 @@ const ProjectItem = ({
   }, [videoRef]);
 
   return (
-    <Flex my="8" align={"center"} direction={isEven ? "row" : "row-reverse"}>
+    <Flex
+      my="8"
+      align={"center"}
+      direction={
+        isEven
+          ? ["column", "column", "row"]
+          : ["column", "column", "row-reverse"]
+      }
+    >
       {/* Details */}
       <motion.div
         whileInView={{ x: !isEven ? [400, 0] : [-400, 0], opacity: [0, 1] }}
@@ -133,8 +150,8 @@ const ProjectItem = ({
             bg={"brand.altMain"}
             borderRadius={"md"}
             p={"4"}
-            mr={isEven ? "-8" : "0"}
-            ml={!isEven ? "-8" : "0"}
+            mr={isEven ? (isLargerThan800 ? "-8" : "0") : "0"}
+            ml={!isEven ? (isLargerThan800 ? "-8" : "0") : "0"}
             zIndex={"50"}
             w="fit-content"
             textAlign={isEven ? "start" : "end"}
@@ -199,14 +216,9 @@ const ProjectItem = ({
             ease: "linear",
             duration: 0.4,
           }}
-          style={{ minWidth: "50%", zIndex: "49" }}
+          style={{ minWidth: isLargerThan800 ? "50%" : "100%", zIndex: "49" }}
         >
-          <Flex
-            minW={"50%"}
-            direction={"column"}
-            zIndex={"49"}
-            cursor={"pointer"}
-          >
+          <Flex direction={"column"} zIndex={"49"} cursor={"pointer"}>
             <AspectRatio w="full" ratio={21 / 9}>
               <video
                 ref={videoRef}
